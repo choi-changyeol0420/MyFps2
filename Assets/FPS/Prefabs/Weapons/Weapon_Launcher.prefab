@@ -146,6 +146,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponRot: {fileID: 5646165488041817916}
   switchWeaponSfx: {fileID: 8300000, guid: 3d07d6160bf96374eb2e998dba821e38, type: 3}
+  shootType: 2
+  maxAmmo: 8
+  delayBeweenShots: 0.5
+  weaponMuzzle: {fileID: 2749496858225023403}
+  MuzzlePrefab: {fileID: 0}
+  shootSfx: {fileID: 8300000, guid: 4caa2752f6069fa41b951d52d041f5a9, type: 3}
   crosshairdefault:
     CrosshairSprite: {fileID: 21300000, guid: 9b27537746f96ff49ae61946c3e902b0, type: 3}
     CrosshairSize: 100
@@ -156,6 +162,9 @@ MonoBehaviour:
     CrosshairColor: {r: 0.45882353, g: 1, b: 0.45882353, a: 1}
   aimZoomRatio: 0.8
   aimOffset: {x: 0, y: 0.16, z: 0}
+  recoilForce: 0.5
+  projectilePrefab: {fileID: -1036485146042508448, guid: 0e23901b938cf4f4eb86850d912715eb,
+    type: 3}
 --- !u!1 &2990922162098100101
 GameObject:
   m_ObjectHideFlags: 0
