@@ -43,7 +43,7 @@ namespace Unity.FPS.Game
         public WeaponShootType shootType;
 
         [SerializeField]private float maxAmmo = 8f;         //장전할 수 있는 최대 총알의 갯수
-        private float currentAmmo;
+        public float currentAmmo;
 
         [SerializeField] private float delayBeweenShots = 0.5f;     //슛 간격
         private float lastTimeShot;                                 //마지막으로 슛한 시간
@@ -66,10 +66,15 @@ namespace Unity.FPS.Game
         //Projectile
         public ProjectileBase projectilePrefab;
 
-        public Vector3 MuzzleVWorldVelocity {  get; private set; }
+        public Vector3 MuzzleVWorldVelocity {  get; private set; }              //현재 프레임의 속도
         private Vector3 lastMuzzlePosition;
         public float CurrentCharge { get; private set; }
+
+        [SerializeField]private int bulletsPerShot = 1;                         //한번 슛하는데 발사되는 탄환의 갯수
+        [SerializeField]private float bulletSpreadAngle = 0f;                                   //불렛이 퍼져 나가는 각도
         #endregion
+
+        public float currentAmmoRatio => currentAmmo / maxAmmo;
 
         private void Awake()
         {
@@ -81,8 +86,19 @@ namespace Unity.FPS.Game
             //초기화
             currentAmmo = maxAmmo;
             lastTimeShot = Time.time;
+            lastMuzzlePosition = weaponMuzzle.position;
         }
 
+        private void Update()
+        {
+            //MuzzleVWorldVelocity
+            if(Time.deltaTime > 0)
+            {
+                MuzzleVWorldVelocity = (weaponMuzzle.position - lastMuzzlePosition)/Time.deltaTime;
+
+                lastMuzzlePosition = weaponMuzzle.position;
+            }
+        }
         //무기 활성화, 비활성
         public void ShowWeapon(bool show)
         {
@@ -135,11 +151,22 @@ namespace Unity.FPS.Game
                 HandleShot();
                 return true;
             }
+            if(currentAmmo == 0f)
+            {
+                currentAmmo = maxAmmo;
+            }
             return false;
         }
         //슛 연출
         void HandleShot()
         {
+            //project tile 생성
+            for (int i =0;  i < bulletsPerShot; i++)
+            {
+                Vector3 shotDirection = GetShotDirectionWithSpread(weaponMuzzle);
+                ProjectileBase ProjectileInstance = Instantiate(projectilePrefab, weaponMuzzle.position, Quaternion.LookRotation(shotDirection));
+                ProjectileInstance.Shoot(this);
+            }
             //VFX
             if(MuzzlePrefab)
             {
@@ -154,6 +181,11 @@ namespace Unity.FPS.Game
             }
             lastTimeShot = Time.time;
         }
-        
+        //project tile 날아가는 방향
+        Vector3 GetShotDirectionWithSpread(Transform shootTransform)
+        {
+            float spreadAngleRatio = bulletSpreadAngle / 180f;
+            return Vector3.Lerp(shootTransform.forward, UnityEngine.Random.insideUnitSphere, spreadAngleRatio);
+        }
     }
 }

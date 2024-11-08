@@ -38,6 +38,8 @@ namespace Unity.FPS.Gameplay
 
         //무기 교체
         public UnityAction<WeaponController> OnswitchToweapon;  //무기 교체시 등록된 함수 호출 
+        public UnityAction<WeaponController, int> OnAddedweapon;    //무기 추가할 때마다 등록된 함수 등록
+        public UnityAction<WeaponController, int> OnRemoveWeapon;   //장착된 무기를 제거할 때마다 등록된 함수 호출
 
         private WeaponSwithState weaponSwithState;          //무기교체 상태
 
@@ -112,6 +114,7 @@ namespace Unity.FPS.Gameplay
             //저격 모드 함수 등록
             OnScopeWeapon += OnScope;
             OffScopeWeapon += OffScope;
+
 
             //Fov 초기값 설정
             SetFov(defaultFov);
@@ -385,6 +388,9 @@ namespace Unity.FPS.Gameplay
                     weaponInstance.SourcePrefab = weaponPrefab.gameObject;
                     weaponInstance.ShowWeapon(false);
 
+                    //무기장착
+                    OnAddedweapon?.Invoke(weaponInstance, i);
+
                     weaponSlots[i] = weaponInstance;
 
                     return true;
@@ -392,6 +398,27 @@ namespace Unity.FPS.Gameplay
                 
             }
             Debug.Log("weapon full");
+            return false;
+        }
+        public bool RemoveWeapon(WeaponController oldweapon)
+        {
+            for(int i = 0; i < weaponSlots.Length; i++)
+            {
+                //같은 무기 찾아서 제거
+                if(weaponSlots[i] == oldweapon)
+                {
+                    weaponSlots[i] = null;
+                    OnRemoveWeapon?.Invoke(oldweapon,i);
+                    Destroy(oldweapon.gameObject);
+
+                    //현재 제거한 무기가 액티브이면
+                    if(i == ActiveWeaponIndex)
+                    {
+                        SwitchWeapon(true);
+                    }
+                    return true;
+                }
+            }
             return false;
         }
         public WeaponController GetActiveWeapon()

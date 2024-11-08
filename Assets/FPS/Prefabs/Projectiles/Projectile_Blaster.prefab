@@ -45,6 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac485ad0b37a97449066a6bf1256204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 300
+  gravityDown: 0
+  root: {fileID: 3659995153115176982}
+  tip: {fileID: 1135791333161367127}
+  hittableLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  impackVfx: {fileID: 7655095426451682942, guid: a7d68b1a502e02a49b8efb1b86a8c931,
+    type: 3}
+  impacklifeTime: 5
+  impackSfxClip: {fileID: 0}
+  Damage: 15
 --- !u!1 &5564024855854763701
 GameObject:
   m_ObjectHideFlags: 0

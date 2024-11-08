@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponRot: {fileID: 5646165488041817916}
   switchWeaponSfx: {fileID: 8300000, guid: 3d07d6160bf96374eb2e998dba821e38, type: 3}
-  shootType: 2
+  shootType: 1
   maxAmmo: 8
   delayBeweenShots: 0.5
   weaponMuzzle: {fileID: 2749496858225023403}
