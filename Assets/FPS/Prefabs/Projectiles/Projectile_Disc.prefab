@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 106790115311484949}
   - component: {fileID: 106790115311484954}
   - component: {fileID: -1036485146042508448}
+  - component: {fileID: 6541347771127930706}
+  - component: {fileID: -8596665145006632712}
   m_Layer: 0
   m_Name: Projectile_Disc
   m_TagString: Untagged
@@ -101,6 +103,7 @@ MonoBehaviour:
   gravityDown: 10
   root: {fileID: 106790115311484948}
   tip: {fileID: 106790115311484948}
+  radius: 0.01
   hittableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -109,6 +112,46 @@ MonoBehaviour:
   impacklifeTime: 5
   impackSfxClip: {fileID: 8300000, guid: 9881daf72dd2c864a82e73026e65c053, type: 3}
   Damage: 40
+--- !u!114 &6541347771127930706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106790115311484953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b00d5f8eaf90f3499f6631c7061b1fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage:
+    Min: 80
+    Max: 360
+  Speed:
+    Min: 20
+    Max: 40
+  GravityDown:
+    Min: 10
+    Max: 3
+  Radius:
+    Min: 0.2
+    Max: 0.3
+--- !u!114 &-8596665145006632712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106790115311484953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6afb43d1603a3b74b8e15a4f4baeea42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargeObject: {fileID: 106790115311484953}
+  scale:
+    Min: {x: 0.5, y: 0.5, z: 0.5}
+    Max: {x: 0.8, y: 0.8, z: 0.8}
 --- !u!1 &1945832826066038730
 GameObject:
   m_ObjectHideFlags: 0
