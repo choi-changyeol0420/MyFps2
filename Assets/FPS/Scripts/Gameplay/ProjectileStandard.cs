@@ -41,12 +41,15 @@ namespace Unity.FPS.Gameplay
 
         //공격
         public float Damage = 20;
+        private DamageArea damageArea;
         #endregion
 
         private void OnEnable()
         {
             ProjectileBase = GetComponent<ProjectileBase>();
             ProjectileBase.OnShoot += OnShoot;
+
+            damageArea = GetComponent<DamageArea>();
 
             //
             Destroy(gameObject, maxlifeTime);
@@ -143,12 +146,18 @@ namespace Unity.FPS.Gameplay
         void OnHit(Vector3 point, Vector3 normal, Collider collider)
         {
             //damage
-            Health health = collider.GetComponent<Collider>().GetComponent<Health>();
-            if (health != null )
+            if(damageArea)
             {
-                health.TakeDamage(Damage, collider.gameObject);
+                damageArea.InflictDamageArea(Damage, point, hittableLayers, QueryTriggerInteraction.Collide, ProjectileBase.Owner);
             }
-
+            else
+            {
+                Damageable damageable = collider.GetComponent<Damageable>();
+                if (damageable != null)
+                {
+                    damageable.InflictDamage(Damage, false, ProjectileBase.Owner);
+                }
+            }
             //Vfx
             if(impackVfx)
             {

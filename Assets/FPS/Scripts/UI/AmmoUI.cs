@@ -57,7 +57,7 @@ namespace Unity.FPS.UI
             float currentFillRate = weaponController.currentAmmoRatio;
             ammoFillImage.fillAmount = Mathf.Lerp(ammoFillImage.fillAmount,currentFillRate,Time.deltaTime * ammofillSharpness);
             //ammo 남은 갯수 UI
-            weaponammoText.text = weaponController.currentAmmo.ToString();
+            weaponammoText.text = weaponController.currentAmmo.ToString("F1");
 
             //액티브 무기 구분
             bool isActiveWeapon = weaponController == weaponsManager.GetActiveWeapon();

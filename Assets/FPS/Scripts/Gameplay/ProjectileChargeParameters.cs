@@ -30,8 +30,8 @@ namespace Unity.FPS.Gameplay
             ProjectileStandard projectileStandard = GetComponent<ProjectileStandard>();
             projectileStandard.Damage = Damage.GetValueFromRatio(projectileBase.InitialCharge);
             projectileStandard.speed = Speed.GetValueFromRatio(projectileBase.InitialCharge);
-            projectileStandard.gravityDown = GravityDown.GetValueFromRatio(projectileStandard.InitialCharge);
-            projectileStandard.radius = Radius.GetValueFromRatio(projectileStandard.InitialCharge);
+            projectileStandard.gravityDown = GravityDown.GetValueFromRatio(projectileBase.InitialCharge);
+            projectileStandard.radius = Radius.GetValueFromRatio(projectileBase.InitialCharge);
         }
     }
 }

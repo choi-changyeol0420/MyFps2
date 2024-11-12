@@ -43,7 +43,7 @@ namespace Unity.FPS.Game
         public WeaponShootType shootType;
 
         [SerializeField]private float maxAmmo = 8f;         //장전할 수 있는 최대 총알의 갯수
-        public float currentAmmo;
+        [HideInInspector]public float currentAmmo;
 
         [SerializeField] private float delayBeweenShots = 0.5f;     //슛 간격
         private float lastTimeShot;                                 //마지막으로 슛한 시간
@@ -81,8 +81,12 @@ namespace Unity.FPS.Game
         private float maxChargeDuration = 2f;                            //충전 시간 max
 
         public float lastChargeTriggerTimeStmp;                          //충전 시작 시간
-        #endregion
+        //Reload - 재장전
+        [SerializeField] private float ammoReloadRate = 1f;                 //초당 재장전되는 량
+        [SerializeField] private float ammoReloadDelay = 2f;            //슛한 다음 ammoReload가 지난후에 재장전되는 시간
 
+        [SerializeField] private bool automaticReload = true;           //자동,수동 구분
+        #endregion
         public float currentAmmoRatio => currentAmmo / maxAmmo;
 
         private void Awake()
@@ -100,7 +104,8 @@ namespace Unity.FPS.Game
 
         private void Update()
         {
-            UpdateCharge();
+            UpdateCharge();     //충전
+            UpdateAmmo();
 
             //MuzzleVWorldVelocity
             if(Time.deltaTime > 0)
@@ -109,6 +114,25 @@ namespace Unity.FPS.Game
 
                 lastMuzzlePosition = weaponMuzzle.position;
             }
+        }
+
+        //Reload - 자동
+        private void UpdateAmmo()
+        {
+            //재장전
+            if(automaticReload && currentAmmo < maxAmmo && !IsCharging
+                && lastTimeShot + ammoReloadDelay < Time.time)
+            {
+                currentAmmo += ammoReloadRate * Time.deltaTime; //초당 ammoReload량 재장전
+                currentAmmo = Mathf.Clamp(currentAmmo, 0, maxAmmo);
+            }
+        }
+        //Reload - 수동
+        public void Reload()
+        {
+            if(automaticReload || currentAmmo >= maxAmmo || IsCharging)
+            return;
+            currentAmmo = maxAmmo;
         }
         //충전
         void UpdateCharge()
@@ -238,10 +262,6 @@ namespace Unity.FPS.Game
 
                 HandleShot();
                 return true;
-            }
-            if(currentAmmo == 0f)
-            {
-                currentAmmo *= maxAmmo/Time.time;
             }
             return false;
         }

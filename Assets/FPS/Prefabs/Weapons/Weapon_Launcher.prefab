@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2225486910712267856}
   - component: {fileID: 7583640433812654122}
   - component: {fileID: -1076630202701866034}
+  - component: {fileID: -4727875440636837697}
   m_Layer: 6
   m_Name: Weapon_Launcher
   m_TagString: Untagged
@@ -147,9 +148,9 @@ MonoBehaviour:
   weaponRot: {fileID: 5646165488041817916}
   switchWeaponSfx: {fileID: 8300000, guid: 3d07d6160bf96374eb2e998dba821e38, type: 3}
   shootType: 2
-  maxAmmo: 8
+  maxAmmo: 4
   currentAmmo: 0
-  delayBeweenShots: 0.5
+  delayBeweenShots: 2
   weaponMuzzle: {fileID: 2749496858225023403}
   MuzzlePrefab: {fileID: 0}
   shootSfx: {fileID: 8300000, guid: 4caa2752f6069fa41b951d52d041f5a9, type: 3}
@@ -168,6 +169,46 @@ MonoBehaviour:
     type: 3}
   bulletsPerShot: 1
   bulletSpreadAngle: 0
+  ammoUseOnStartCharge: 1
+  ammoUsegeRateWhileCharge: 1
+  lastChargeTriggerTimeStmp: 0
+  ammoReloadRate: 1
+  ammoReloadDelay: 2
+  automaticReload: 1
+--- !u!114 &-4727875440636837697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2225486910712267859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7d18720c9883f44a7bd0b408ce7d4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargingObject: {fileID: 2990922162098100103}
+  spiningFrame: {fileID: 2990922162098100101}
+  distOrbitPartclePrefab: {fileID: 1087039822203223203, guid: b9cf7bff98404174d83a37d58c543aa5,
+    type: 3}
+  scale:
+    Min: {x: 0.01, y: 0.01, z: 0.01}
+    Max: {x: 1, y: 1, z: 1}
+  offset: {x: 0, y: 0, z: 0.764}
+  parentTranfrom: {fileID: 0}
+  orbitY:
+    Min: 3.1416
+    Max: 12.5666
+  radius:
+    Min: {x: 0.5, y: 0.5, z: 0.5}
+    Max: {x: 1.5, y: 1.5, z: 1.5}
+  spiningSpeed:
+    Min: 50
+    Max: 1500
+  chargeSound: {fileID: 8300000, guid: fb69bd8b1bbea9c41b4b95fc497719f2, type: 3}
+  loopChargeWeaponSfx: {fileID: 8300000, guid: 60053cbdac004744199f1ae539442c44, type: 3}
+  useProceduralPitchOnLoop: 1
+  maxProceduralPichValue: 2
 --- !u!1 &2990922162098100101
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +236,7 @@ Transform:
   m_GameObject: {fileID: 2990922162098100101}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00000009068096, y: 0.18957508, z: 0.55900544}
+  m_LocalPosition: {x: 0, y: 0.18957508, z: 0.55900544}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
