@@ -180,9 +180,9 @@ namespace Unity.FPS.Gameplay
                 RaycastHit hit;
                 if(Physics.Raycast(weaponCamera.transform.position, weaponCamera.transform.forward, out hit, 300f))
                 {
-                    //콜라이더 체크 - 적(Health)
-                    Health health = hit.collider.GetComponent<Health>();
-                    if (health)
+                    //콜라이더 체크 - 적(Damageabl)
+                    Damageable damageable = hit.collider.GetComponent<Damageable>();
+                    if (damageable)
                     {
                         IsPointingAtEnemy= true;
                     }
