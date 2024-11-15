@@ -742,6 +742,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 97853789975864225}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &958946306 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7635230255058315795, guid: 7593818fba43c7f4c8372299ce5e893f,
+    type: 3}
+  m_PrefabInstance: {fileID: 97853789975864225}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1022098256
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1367,6 +1373,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2729281214124946789}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1581706773 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7635230255058315795, guid: 7593818fba43c7f4c8372299ce5e893f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1064186591066820813}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1603278495
 GameObject:
   m_ObjectHideFlags: 0
@@ -1476,6 +1488,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5963937743390997973, guid: 7042f8fe21debc944b5bdc894f478d63,
     type: 3}
   m_PrefabInstance: {fileID: 2729281214845312454}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1698963964 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7635230255058315795, guid: 7593818fba43c7f4c8372299ce5e893f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5561623728636326319}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1771139419
 PrefabInstance:
@@ -1631,6 +1649,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4477206535605542485, guid: 509d754db50222f46b673c4778f267e4,
     type: 3}
   m_PrefabInstance: {fileID: 1647969997}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1954291877 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7635230255058315795, guid: 7593818fba43c7f4c8372299ce5e893f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3597388016067312207}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2050618959
 GameObject:
@@ -2260,6 +2284,7 @@ GameObject:
   - component: {fileID: 1005193788763230236}
   - component: {fileID: 1005193788763230238}
   - component: {fileID: 1005193788763230239}
+  - component: {fileID: 1005193788763230240}
   m_Layer: 0
   m_Name: Enemy_HoverBot
   m_TagString: Untagged
@@ -2415,8 +2440,27 @@ MonoBehaviour:
   animator: {fileID: 1331168626748594038}
   movementSound: {fileID: 8300000, guid: 44c5f76f80602024e82d3e5f3af4ee97, type: 3}
   pitchMovementSpeed:
-    Min: 1
+    Min: 0.1
     Max: 2
+  randomHitSparks:
+  - {fileID: 1698963964}
+  - {fileID: 1954291877}
+  - {fileID: 958946306}
+  - {fileID: 1581706773}
+--- !u!114 &1005193788763230240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005193788763230229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1345038bfe2a22541ac8c5ce7d9fad83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  affiliation: 0
+  aimPoint: {fileID: 0}
 --- !u!143 &1060252762805981802
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4652,6 +4696,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2729281213404769777}
+  - component: {fileID: 2729281213404769784}
   m_Layer: 5
   m_Name: GameManager
   m_TagString: Untagged
@@ -4659,6 +4704,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2729281213404769784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2729281213404769783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc11e1aa2960124d8f0616b13f7dbef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2729281213596062134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7808,6 +7865,7 @@ GameObject:
   - component: {fileID: 8118132282568604723}
   - component: {fileID: 8118132282568604722}
   - component: {fileID: 8118132282568604721}
+  - component: {fileID: 8118132282568604724}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -8807,6 +8865,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   criticalHealRatio: 0.3
+--- !u!114 &8118132282568604724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4704865185068623876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1345038bfe2a22541ac8c5ce7d9fad83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  affiliation: 1
+  aimPoint: {fileID: 0}
 --- !u!224 &8186402889715745435
 RectTransform:
   m_ObjectHideFlags: 0
