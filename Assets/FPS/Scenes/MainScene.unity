@@ -1410,6 +1410,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &1628830858 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6989503427151715484, guid: f77e2130c96652640accf8b9f6990d6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7310360382530218055}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1642935492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 748781637555137343, guid: 3f5b545b9a1e74c418b061bba5bb9e2c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3091084300042766631}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1647969997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1644,6 +1656,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 939236536430072976}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1887012369 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6989503427151715484, guid: f77e2130c96652640accf8b9f6990d6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 939236536430072976}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1935557591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4477206535605542485, guid: 509d754db50222f46b673c4778f267e4,
@@ -1732,6 +1750,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2141676431450117668, guid: cd17687759887a0438ee021e51abc9d9,
     type: 3}
   m_PrefabInstance: {fileID: 2729281214693666535}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2146078924 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8855434715677272938, guid: 1bc9e4f49c67a6a41af3e7cb3d30bb43,
+    type: 3}
+  m_PrefabInstance: {fileID: 4060452558348959524}
   m_PrefabAsset: {fileID: 0}
 --- !u!223 &10879186895181719
 Canvas:
@@ -2403,6 +2427,12 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   flshOnHitDuration: 0.2
+  eyeColorMaterial: {fileID: 2100000, guid: e6fdfd4e017234d43ac116abee8fa90a, type: 2}
+  defaultEyeColor: {r: 0, g: 2.2588236, b: 18.82353, a: 1}
+  attackeyeColor: {r: 66.43427, g: 5.565175, b: 0, a: 1}
+  swapToNextWeapon: 0
+  delayAfterWeaponSwap: 0
+  currentWeaponIndex: 0
 --- !u!195 &1005193788763230238
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2447,6 +2477,11 @@ MonoBehaviour:
   - {fileID: 1954291877}
   - {fileID: 958946306}
   - {fileID: 1581706773}
+  detectedVfx:
+  - {fileID: 2146078924}
+  - {fileID: 1628830858}
+  - {fileID: 1887012369}
+  detectedSfx: {fileID: 8300000, guid: 4c0282829629af04fa7ea6a2fca35c5f, type: 3}
 --- !u!114 &1005193788763230240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2460,7 +2495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   affiliation: 0
-  aimPoint: {fileID: 0}
+  aimPoint: {fileID: 1389267405822270852}
 --- !u!143 &1060252762805981802
 CharacterController:
   m_ObjectHideFlags: 0
@@ -7840,6 +7875,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1724140204939415369}
+  - component: {fileID: 4645615395041440941}
   m_Layer: 0
   m_Name: DetectionModule
   m_TagString: Untagged
@@ -7847,6 +7883,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4645615395041440941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4645615395041440940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b3e86cdec740141afe9d003b73c663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionSourcePonit: {fileID: 1331168626755532950}
+  detectionRange: 20
+  knownTargetTimeout: 4
+  attackRange: 5
 --- !u!1 &4704865185068623876
 GameObject:
   m_ObjectHideFlags: 0
@@ -8627,6 +8679,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7374895383763836203}
   - component: {fileID: 644602052240888617}
+  - component: {fileID: 7374895383763836204}
   m_Layer: 10
   m_Name: Weapon_EyeLazers
   m_TagString: Untagged
@@ -8651,6 +8704,48 @@ Transform:
   - {fileID: 798006112723480282}
   m_Father: {fileID: 5565199784273072033}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7374895383763836204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7374895383763836200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829bb2a633bd7d04a9e88f66dba9a45f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponRot: {fileID: 7808692595215689536}
+  switchWeaponSfx: {fileID: 8300000, guid: 3d07d6160bf96374eb2e998dba821e38, type: 3}
+  shootType: 3
+  maxAmmo: 0
+  currentAmmo: 0
+  delayBeweenShots: 0
+  weaponMuzzle: {fileID: 798006112723480282}
+  MuzzlePrefab: {fileID: 1642935492}
+  shootSfx: {fileID: 8300000, guid: dd48d894627288a4cb3ed84c94ab0441, type: 3}
+  crosshairdefault:
+    CrosshairSprite: {fileID: 0}
+    CrosshairSize: 0
+    CrosshairColor: {r: 0, g: 0, b: 0, a: 0}
+  crosshairTargetInSight:
+    CrosshairSprite: {fileID: 0}
+    CrosshairSize: 0
+    CrosshairColor: {r: 0, g: 0, b: 0, a: 0}
+  aimZoomRatio: 1
+  aimOffset: {x: 0, y: 0, z: 0}
+  recoilForce: 0.5
+  projectilePrefab: {fileID: 4758439188822744884, guid: c9387256d59c80f4f9f66257031ac197,
+    type: 3}
+  bulletsPerShot: 0
+  bulletSpreadAngle: 0
+  ammoUseOnStartCharge: 1
+  ammoUsegeRateWhileCharge: 1
+  lastChargeTriggerTimeStmp: 0
+  ammoReloadRate: 1
+  ammoReloadDelay: 2
+  automaticReload: 1
 --- !u!1 &7414594456867717721
 GameObject:
   m_ObjectHideFlags: 0
@@ -8878,7 +8973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   affiliation: 1
-  aimPoint: {fileID: 0}
+  aimPoint: {fileID: 1707114689604342726}
 --- !u!224 &8186402889715745435
 RectTransform:
   m_ObjectHideFlags: 0
