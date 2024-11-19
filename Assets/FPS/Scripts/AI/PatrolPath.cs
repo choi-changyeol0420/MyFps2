@@ -13,6 +13,7 @@ namespace Unity.FPS.AI
 
         //this Path를 패트롤하는 enemy들
         public List<EnemyController> enemiesToAssign = new List<EnemyController>();
+        public WaveSpawn waveSpawn;
         #endregion
         private void Start()
         {

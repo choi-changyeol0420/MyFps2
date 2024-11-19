@@ -53,7 +53,8 @@ MonoBehaviour:
   hittableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  impackVfx: {fileID: 0}
+  impackVfx: {fileID: 7655095426451682942, guid: 4d48b487f11e62940a978c7c0c0cbcb4,
+    type: 3}
   impacklifeTime: 5
   impackSfxClip: {fileID: 0}
   Damage: 20

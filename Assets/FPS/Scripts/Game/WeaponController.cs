@@ -258,7 +258,7 @@ namespace Unity.FPS.Game
             if(currentAmmo >= 1f && (lastTimeShot + delayBeweenShots) < Time.time)
             {
                 currentAmmo -= 1f;
-                Debug.Log($"currentAmmo: {currentAmmo}");
+                //Debug.Log($"currentAmmo: {currentAmmo}");
 
                 HandleShot();
                 return true;
